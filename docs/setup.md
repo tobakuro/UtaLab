@@ -249,7 +249,7 @@ warning: error: unable to download ...: HTTP error 200 (curl error: Stream error
 ### 5.3 起動成功時の表示
 
 ```
-🎤 Karaoke app dev environment ready
+🎤 utalab dev environment ready
    Node:  v22.22.2
    Python:  Python 3.11.15
 (devbox) your-name@your-pc:~/utalab$
@@ -334,7 +334,7 @@ pnpm dev
 以下のような出力が出たら成功:
 
 ```
-▲ Next.js 15.x.x
+▲ Next.js 16.x.x
 - Local:        http://localhost:3000
 ✓ Ready in 1.5s
 ```
@@ -489,6 +489,7 @@ pnpm dev
 ### 11.3 コミット前チェック
 
 ```bash
+pnpm format:check  # Prettier フォーマット確認
 pnpm lint          # ESLint 実行
 pnpm build         # ビルドが通るか確認
 ```
@@ -497,17 +498,17 @@ pnpm build         # ビルドが通るか確認
 
 ## 12. トラブルシューティング集
 
-| 症状 | 対処 |
-| --- | --- |
-| `devbox shell` が遅い | 初回は 15〜30 分が正常。2 回目以降も遅いなら `devbox install` でキャッシュ再構築 |
-| `pnpm install` で EACCES エラー | プロジェクトが `/mnt/c/` 配下にある。`~/` 以下に移動する(1.3 参照) |
-| `pnpm dev` で `next: command not found` | `node_modules` が欠けている。`pnpm install` を実行 |
-| `cannot connect to nix daemon` | nix-daemon が起動していない。`sudo systemctl start nix-daemon` |
-| `code .` で Exec format error | `wsl --shutdown`(PowerShell) → Ubuntu ターミナルを開き直す |
-| マイク権限が取れない | ブラウザの設定でサイト別のマイク許可を確認。localhost なら HTTPS 不要 |
-| `pnpm create next-app` で「既存ファイル警告」 | `.devbox/` が既にある場合、一旦サブディレクトリで作成してから中身を移動する |
-| `npm naming restrictions: name can no longer contain capital letters` | フォルダ名を小文字にする(`mv UtaLab utalab`) |
-| WSL 起動後に systemd が動いていない | Docker Desktop を終了してから `wsl --shutdown` を再実行 |
+| 症状                                                                  | 対処                                                                             |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `devbox shell` が遅い                                                 | 初回は 15〜30 分が正常。2 回目以降も遅いなら `devbox install` でキャッシュ再構築 |
+| `pnpm install` で EACCES エラー                                       | プロジェクトが `/mnt/c/` 配下にある。`~/` 以下に移動する(1.3 参照)               |
+| `pnpm dev` で `next: command not found`                               | `node_modules` が欠けている。`pnpm install` を実行                               |
+| `cannot connect to nix daemon`                                        | nix-daemon が起動していない。`sudo systemctl start nix-daemon`                   |
+| `code .` で Exec format error                                         | `wsl --shutdown`(PowerShell) → Ubuntu ターミナルを開き直す                       |
+| マイク権限が取れない                                                  | ブラウザの設定でサイト別のマイク許可を確認。localhost なら HTTPS 不要            |
+| `pnpm create next-app` で「既存ファイル警告」                         | `.devbox/` が既にある場合、一旦サブディレクトリで作成してから中身を移動する      |
+| `npm naming restrictions: name can no longer contain capital letters` | フォルダ名を小文字にする(`mv UtaLab utalab`)                                     |
+| WSL 起動後に systemd が動いていない                                   | Docker Desktop を終了してから `wsl --shutdown` を再実行                          |
 
 ---
 
