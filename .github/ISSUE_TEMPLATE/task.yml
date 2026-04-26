@@ -1,0 +1,20 @@
+name: タスク
+description: 開発タスクや技術的な作業
+labels: ["task"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: タスク内容
+      description: 何をするか簡潔に説明してください
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 完了条件
+      description: 何ができたらこのタスクは完了ですか？
+      value: |
+        - [ ]
+    validations:
+      required: true
