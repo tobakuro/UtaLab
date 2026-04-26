@@ -1,0 +1,18 @@
+{
+  "packages": [
+    "nodejs@22",
+    "pnpm@latest",
+    "python@3.11",
+    "uv@latest",
+    "ffmpeg@latest",
+    "libsndfile@latest",
+    "git@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo '🎤 utalab dev environment ready'",
+      "echo '   Node: ' $(node -v)",
+      "echo '   Python: ' $(python --version)"
+    ]
+  }
+}
