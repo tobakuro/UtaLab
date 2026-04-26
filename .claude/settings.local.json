@@ -3,6 +3,7 @@
     "allow": [
       "Read(//home/tobakuro/utalab/**)",
       "Read(///wsl.localhost/Ubuntu/home/tobakuro/utalab/**)"
-    ]
+    ],
+    "additionalDirectories": ["\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"]
   }
 }
