@@ -1,6 +1,6 @@
 name: 機能追加
 description: 新しい機能のリクエスト
-labels: ["enhancement"]
+labels: ['enhancement']
 body:
   - type: textarea
     id: summary

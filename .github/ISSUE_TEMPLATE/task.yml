@@ -1,6 +1,6 @@
 name: タスク
 description: 開発タスクや技術的な作業
-labels: ["task"]
+labels: ['task']
 body:
   - type: textarea
     id: description

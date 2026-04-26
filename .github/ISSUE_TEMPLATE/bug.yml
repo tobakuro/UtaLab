@@ -1,6 +1,6 @@
 name: バグ報告
 description: バグや不具合の報告
-labels: ["bug"]
+labels: ['bug']
 body:
   - type: textarea
     id: description
