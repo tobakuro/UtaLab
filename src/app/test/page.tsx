@@ -25,11 +25,15 @@ export default function TestPage() {
       .then(setMelody);
   }, []);
 
+  const tickRef = useRef<() => void>(() => {});
   const tick = useCallback(() => {
     if (!playerRef.current) return;
     setCurrentTime(playerRef.current.getCurrentTime());
-    animationIdRef.current = requestAnimationFrame(tick);
+    animationIdRef.current = requestAnimationFrame(tickRef.current);
   }, []);
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   const start = useCallback(async () => {
     if (!melody) return;
