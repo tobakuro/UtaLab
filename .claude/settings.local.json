@@ -8,8 +8,6 @@
       "Bash(gh issue create --repo tobakuro/UtaLab --title 'CREPE でメロディ抽出（ピッチ列 JSON 生成）' --label MVP,high,task --body ' *)",
       "Bash(gh issue *)"
     ],
-    "additionalDirectories": [
-      "\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"
-    ]
+    "additionalDirectories": ["\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"]
   }
 }

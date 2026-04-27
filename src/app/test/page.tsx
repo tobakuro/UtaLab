@@ -97,9 +97,7 @@ export default function TestPage() {
         {isPlaying ? '停止' : '歌う'}
       </button>
 
-      <p className="text-sm text-gray-400">
-        青いバー: お手本メロディ / 緑の点: あなたの声
-      </p>
+      <p className="text-sm text-gray-400">青いバー: お手本メロディ / 緑の点: あなたの声</p>
     </main>
   );
 }

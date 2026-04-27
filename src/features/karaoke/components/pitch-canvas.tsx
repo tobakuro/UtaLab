@@ -24,7 +24,13 @@ function freqToY(freq: number, height: number): number {
   return ratio * height;
 }
 
-export function PitchCanvas({ melodyNotes, currentTime, userPitch, width = 800, height = 200 }: Props) {
+export function PitchCanvas({
+  melodyNotes,
+  currentTime,
+  userPitch,
+  width = 800,
+  height = 200,
+}: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
