@@ -1,15 +1,19 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { AccompanimentPlayer } from '@/features/karaoke/audio/accompaniment-player';
 import { PitchCanvas } from '@/features/karaoke/components/pitch-canvas';
 import { usePitchDetector } from '@/features/karaoke/hooks/use-pitch-detector';
+import { useScoring } from '@/features/karaoke/hooks/use-scoring';
 import type { MelodyData } from '@/features/karaoke/types/melody';
 
 const MELODY_URL = '/samples/sample-001.melody.json';
+const SONG_ID = 'sample-001';
 
 export default function TestPage() {
+  const router = useRouter();
   const [melody, setMelody] = useState<MelodyData | null>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -18,6 +22,7 @@ export default function TestPage() {
   const animationIdRef = useRef<number | null>(null);
 
   const { pitchState, error: micError, start: startMic, stop: stopMic } = usePitchDetector();
+  const { recordPitch, finish, reset } = useScoring(SONG_ID);
 
   useEffect(() => {
     fetch(MELODY_URL)
@@ -35,8 +40,15 @@ export default function TestPage() {
     tickRef.current = tick;
   }, [tick]);
 
+  useEffect(() => {
+    if (isPlaying) {
+      recordPitch(currentTime, pitchState.pitch);
+    }
+  }, [currentTime, pitchState.pitch, isPlaying, recordPitch]);
+
   const start = useCallback(async () => {
     if (!melody) return;
+    reset();
     const player = new AccompanimentPlayer();
     await player.load(melody.accompaniment);
     playerRef.current = player;
@@ -44,9 +56,9 @@ export default function TestPage() {
     setIsPlaying(true);
     animationIdRef.current = requestAnimationFrame(tick);
     await startMic();
-  }, [melody, tick, startMic]);
+  }, [melody, tick, startMic, reset]);
 
-  const stop = useCallback(() => {
+  const stop = useCallback(async () => {
     playerRef.current?.stop();
     playerRef.current = null;
     if (animationIdRef.current !== null) {
@@ -56,7 +68,17 @@ export default function TestPage() {
     stopMic();
     setIsPlaying(false);
     setCurrentTime(0);
-  }, [stopMic]);
+
+    if (melody) {
+      const reference = melody.pitches.map((n) => ({
+        time: n.time,
+        freq: n.freq,
+        duration: n.duration,
+      }));
+      const score = await finish(reference);
+      router.push(`/result?score=${score}&songId=${SONG_ID}`);
+    }
+  }, [stopMic, melody, finish, router]);
 
   useEffect(() => {
     return () => {
