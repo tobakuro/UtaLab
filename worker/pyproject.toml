@@ -9,4 +9,8 @@ dependencies = [
     "librosa>=0.11.0",
     "numpy>=2.4.4",
     "soundfile>=0.13.1",
+    "tensorflow>=2.21.0",
+    "torch==2.5.1",
+    "torchaudio==2.5.1",
+    "torchcodec>=0.11.1",
 ]
