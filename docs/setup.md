@@ -343,36 +343,32 @@ Windows のブラウザで `http://localhost:3000` にアクセスし、Next.js 
 
 確認できたら Ctrl+C で停止。
 
-### 7.2 Python 環境の確認(任意)
+### 7.2 Python ワーカーのセットアップ
 
-音声処理の学習を始めるなら、`worker/` ディレクトリを用意する:
-
-```bash
-mkdir -p worker && cd worker
-uv init
-uv add librosa numpy soundfile
-```
-
-最小スクリプト `worker/sample.py`:
-
-```python
-import librosa
-import numpy as np
-
-y, sr = librosa.load(librosa.ex('trumpet'))
-f0, _, _ = librosa.pyin(y, fmin=50, fmax=2000)
-print(f"Sample rate: {sr}, Duration: {len(y)/sr:.2f}s")
-print(f"Mean pitch: {np.nanmean(f0):.2f} Hz")
-```
-
-実行:
+`worker/` に AI 音声解析ワーカーが用意されている。以下でセットアップする。
 
 ```bash
-uv run python sample.py
+cd ~/utalab/worker
+uv add demucs librosa numpy soundfile
+uv pip install crepe --no-build-isolation
 cd ..
 ```
 
-ピッチ情報が表示されれば、Python 音声処理の基盤も OK。
+> `crepe` だけ `--no-build-isolation` が必要。パッケージのビルド設定が古いため。
+
+#### 動作確認
+
+著作権フリーの音声ファイルを用意して実行:
+
+```bash
+cd ~/utalab/worker
+uv run python analyze.py <音声ファイルのパス> ./output_test
+```
+
+`output_test/melody.json` と `output_test/accompaniment.wav` が生成されれば成功。
+
+> **初回は Demucs のモデルが自動ダウンロードされる（数百 MB、数分かかる）。**  
+> GPU がなくても動くが、CPU のみの場合は 1 曲あたり 5〜15 分かかる。
 
 ---
 
@@ -462,6 +458,7 @@ gh auth status
 - [ ] Devbox シェル内で `ffmpeg -version` が表示される
 - [ ] `pnpm install` がエラーなく完了
 - [ ] `pnpm dev` で Next.js の画面が `http://localhost:3000` に表示される
+- [ ] `cd worker && uv run python analyze.py --help` がエラーなく動く
 - [ ] `code .` で VS Code が WSL モードで開く
 - [ ] `git config --global user.name` で自分の名前が表示される
 - [ ] `gh auth status` で GitHub にログイン済みと表示される
