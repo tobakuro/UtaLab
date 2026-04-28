@@ -8,15 +8,15 @@
 
 MVP ロードマップの Day 5 進行中。
 
-| Day   | 内容                                           | 状態           |
-| ----- | ---------------------------------------------- | -------------- |
-| Day 1 | Web Audio API でマイク波形表示                 | 完了           |
-| Day 2 | AudioWorklet + pitchy でリアルタイムピッチ検出 | 完了           |
-| Day 3 | 伴奏再生 + 時刻同期 + Canvas ピッチライン描画  | 完了           |
-| Day 4 | 採点ロジック + 結果画面                        | 完了           |
-| Day 5 | Python で Demucs + CREPE                       | **進行中**     |
-| Day 6 | フロントエンドと統合                           | 未着手         |
-| Day 7 | 仕上げ                                         | 未着手         |
+| Day   | 内容                                           | 状態       |
+| ----- | ---------------------------------------------- | ---------- |
+| Day 1 | Web Audio API でマイク波形表示                 | 完了       |
+| Day 2 | AudioWorklet + pitchy でリアルタイムピッチ検出 | 完了       |
+| Day 3 | 伴奏再生 + 時刻同期 + Canvas ピッチライン描画  | 完了       |
+| Day 4 | 採点ロジック + 結果画面                        | 完了       |
+| Day 5 | Python で Demucs + CREPE                       | **進行中** |
+| Day 6 | フロントエンドと統合                           | 未着手     |
+| Day 7 | 仕上げ                                         | 未着手     |
 
 ---
 
@@ -48,6 +48,7 @@ uv run python analyze.py <音声ファイル> ./output_test
 ```
 
 出力:
+
 - `output_test/accompaniment.wav` — ボーカル除去済み伴奏
 - `output_test/melody.json` — ピッチ列 JSON
 

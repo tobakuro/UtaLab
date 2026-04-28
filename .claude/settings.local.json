@@ -9,8 +9,6 @@
       "Bash(gh issue *)",
       "WebFetch(domain:www.ongaku-kentei.com)"
     ],
-    "additionalDirectories": [
-      "\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"
-    ]
+    "additionalDirectories": ["\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"]
   }
 }
