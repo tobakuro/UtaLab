@@ -1,0 +1,24 @@
+{
+  "songId": "sample-001",
+  "title": "maou_shining_star_full",
+  "accompaniment": "/samples/maou_shining_star_full.mp3",
+  "duration": 30,
+  "pitches": [
+    { "time": 1.0, "freq": 293.66, "duration": 0.5 },
+    { "time": 1.5, "freq": 329.63, "duration": 0.5 },
+    { "time": 2.0, "freq": 349.23, "duration": 0.5 },
+    { "time": 2.5, "freq": 392.0, "duration": 0.5 },
+    { "time": 3.0, "freq": 440.0, "duration": 1.0 },
+    { "time": 4.0, "freq": 392.0, "duration": 0.5 },
+    { "time": 4.5, "freq": 349.23, "duration": 0.5 },
+    { "time": 5.0, "freq": 329.63, "duration": 1.0 },
+    { "time": 6.0, "freq": 293.66, "duration": 0.5 },
+    { "time": 6.5, "freq": 329.63, "duration": 0.5 },
+    { "time": 7.0, "freq": 392.0, "duration": 0.5 },
+    { "time": 7.5, "freq": 440.0, "duration": 0.5 },
+    { "time": 8.0, "freq": 493.88, "duration": 1.0 },
+    { "time": 9.0, "freq": 440.0, "duration": 0.5 },
+    { "time": 9.5, "freq": 392.0, "duration": 0.5 },
+    { "time": 10.0, "freq": 349.23, "duration": 2.0 }
+  ]
+}

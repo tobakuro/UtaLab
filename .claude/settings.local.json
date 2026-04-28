@@ -5,8 +5,12 @@
       "Read(///wsl.localhost/Ubuntu/home/tobakuro/utalab/**)",
       "Bash(gh issue create --repo tobakuro/UtaLab --title 'MVP: カラオケ採点機能（フロントエンド）' --label MVP,high,task --body ' *)",
       "Bash(gh issue create --repo tobakuro/UtaLab --title 'Demucs でボーカル/伴奏分離' --label MVP,high,task --body ' *)",
-      "Bash(gh issue create --repo tobakuro/UtaLab --title 'CREPE でメロディ抽出（ピッチ列 JSON 生成）' --label MVP,high,task --body ' *)"
+      "Bash(gh issue create --repo tobakuro/UtaLab --title 'CREPE でメロディ抽出（ピッチ列 JSON 生成）' --label MVP,high,task --body ' *)",
+      "Bash(gh issue *)",
+      "WebFetch(domain:www.ongaku-kentei.com)"
     ],
-    "additionalDirectories": ["\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"]
+    "additionalDirectories": [
+      "\\\\wsl.localhost\\Ubuntu\\home\\tobakuro\\utalab\\.github"
+    ]
   }
 }
