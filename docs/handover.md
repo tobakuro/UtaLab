@@ -116,22 +116,6 @@ pnpm bundle:worklets
 
 ---
 
-## git の未コミット差分
-
-以下のファイルがまだコミットされていない。引き継ぎ後にコミットすること。
-
-| ファイル                                             | 状態      | 内容                    |
-| ---------------------------------------------------- | --------- | ----------------------- |
-| `src/app/test/page.tsx`                              | modified  | Day 3 の内容に更新済み  |
-| `src/features/karaoke/audio/accompaniment-player.ts` | untracked | 伴奏再生ラッパー        |
-| `src/features/karaoke/components/pitch-canvas.tsx`   | untracked | Canvas ピッチライン描画 |
-| `src/features/karaoke/types/melody.ts`               | untracked | メロディ型定義          |
-| `public/samples/sample-001.melody.json`              | untracked | ダミーメロディデータ    |
-
-`.claude/settings.local.json` は commit 不要。
-
----
-
 ## 開発環境の起動
 
 ```bash
