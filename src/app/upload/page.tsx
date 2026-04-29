@@ -3,6 +3,8 @@
 import { useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+import { PageHeader } from '@/components/layouts/page-header';
+
 type Status = 'idle' | 'analyzing' | 'error';
 
 export default function UploadPage() {
@@ -33,42 +35,62 @@ export default function UploadPage() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 bg-gray-950 p-8">
-      <h1 className="text-3xl font-bold text-white">曲をアップロード</h1>
+    <div className="flex min-h-screen flex-col bg-gray-100">
+      <PageHeader />
 
-      <div
-        className="flex w-full max-w-md cursor-pointer flex-col items-center gap-4 rounded-2xl border-2 border-dashed border-gray-600 bg-gray-900 px-8 py-12 transition hover:border-cyan-500"
-        onClick={() => inputRef.current?.click()}
-      >
-        <input
-          ref={inputRef}
-          type="file"
-          accept="audio/*"
-          className="hidden"
-          onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-        />
-        {file ? (
-          <p className="text-center text-white">{file.name}</p>
-        ) : (
-          <>
-            <p className="text-gray-400">クリックして音声ファイルを選択</p>
-            <p className="text-sm text-gray-600">MP3, WAV, FLAC など</p>
-          </>
-        )}
-      </div>
+      <main className="flex flex-1 items-center justify-center p-8">
+        <div className="flex w-full max-w-lg flex-col gap-6">
+          <div className="rounded border-b-2 border-red-700 bg-white px-4 py-3">
+            <h1 className="text-base font-black text-gray-800">曲をアップロード</h1>
+            <p className="text-xs text-gray-500">音声ファイルをアップロードすると、AI が自動解析してカラオケ採点ができます</p>
+          </div>
 
-      {status === 'analyzing' && (
-        <p className="animate-pulse text-cyan-400">AI が解析中です... (1〜2分かかります)</p>
-      )}
-      {error && <p className="text-red-400">{error}</p>}
+          <div
+            className="flex cursor-pointer flex-col items-center gap-4 rounded border-2 border-dashed border-gray-300 bg-white px-8 py-14 transition hover:border-red-600"
+            onClick={() => inputRef.current?.click()}
+          >
+            <input
+              ref={inputRef}
+              type="file"
+              accept="audio/*"
+              className="hidden"
+              onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+            />
+            {file ? (
+              <p className="text-center font-bold text-gray-800">{file.name}</p>
+            ) : (
+              <>
+                <span className="text-5xl">🎵</span>
+                <p className="font-bold text-gray-500">クリックして音声ファイルを選択</p>
+                <p className="text-sm text-gray-400">MP3, WAV, FLAC など</p>
+              </>
+            )}
+          </div>
 
-      <button
-        onClick={handleSubmit}
-        disabled={!file || status === 'analyzing'}
-        className="rounded-lg bg-cyan-600 px-10 py-3 font-semibold text-white transition hover:bg-cyan-700 disabled:opacity-50"
-      >
-        {status === 'analyzing' ? '解析中...' : '解析してカラオケ開始'}
-      </button>
-    </main>
+          {status === 'analyzing' && (
+            <div className="rounded bg-orange-50 px-4 py-3 text-sm font-bold text-orange-700">
+              ⏳ AI が解析中です... (1〜2分かかります)
+            </div>
+          )}
+          {error && (
+            <div className="rounded bg-red-50 px-4 py-3 text-sm font-bold text-red-700">
+              ⚠ {error}
+            </div>
+          )}
+
+          <button
+            onClick={handleSubmit}
+            disabled={!file || status === 'analyzing'}
+            className="rounded bg-red-700 py-4 text-base font-black text-white transition hover:bg-red-600 disabled:opacity-50"
+          >
+            {status === 'analyzing' ? '解析中...' : '解析してカラオケ開始'}
+          </button>
+        </div>
+      </main>
+
+      <footer className="flex h-10 items-center border-t border-gray-300 bg-gray-200 px-4">
+        <p className="text-xs text-gray-400">解析には1〜2分かかります。イヤホン装着を推奨します。</p>
+      </footer>
+    </div>
   );
 }

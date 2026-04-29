@@ -3,37 +3,56 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
+import { PageHeader } from '@/components/layouts/page-header';
+
 function ResultContent() {
   const router = useRouter();
   const params = useSearchParams();
   const score = Number(params.get('score') ?? 0);
   const songId = params.get('songId') ?? '';
 
+  const grade =
+    score >= 90 ? { label: '★★★ 超上手い！', color: 'text-red-700' }
+    : score >= 70 ? { label: '★★☆ 上手い！', color: 'text-orange-600' }
+    : score >= 50 ? { label: '★☆☆ まあまあ', color: 'text-yellow-600' }
+    : { label: '☆☆☆ がんばろう', color: 'text-gray-500' };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-8 bg-gray-950 p-8">
-      <h1 className="text-3xl font-bold text-white">結果</h1>
+    <div className="flex min-h-screen flex-col bg-gray-100">
+      <PageHeader />
 
-      <div className="flex flex-col items-center gap-4 rounded-2xl border border-gray-700 bg-gray-900 px-16 py-12">
-        <p className="text-sm text-gray-400">{songId}</p>
-        <p className="font-mono text-8xl font-black text-white">{score}</p>
-        <p className="text-lg text-gray-400">/ 100 点</p>
-      </div>
+      <main className="flex flex-1 flex-col items-center gap-6 p-8">
+        <div className="w-full max-w-md rounded border-b-2 border-red-700 bg-white px-4 py-3">
+          <h1 className="text-base font-black text-gray-800">採点結果</h1>
+          <p className="text-xs text-gray-500">{songId}</p>
+        </div>
 
-      <div className="flex gap-4">
-        <button
-          onClick={() => router.push('/test')}
-          className="rounded-lg bg-cyan-600 px-8 py-3 font-semibold text-white hover:bg-cyan-700"
-        >
-          もう一度歌う
-        </button>
-        <button
-          onClick={() => router.push('/')}
-          className="rounded-lg border border-gray-600 px-8 py-3 font-semibold text-gray-300 hover:bg-gray-800"
-        >
-          トップへ
-        </button>
-      </div>
-    </main>
+        <div className="flex w-full max-w-md flex-col items-center gap-3 rounded border border-gray-300 bg-white py-12">
+          <p className={`text-lg font-bold ${grade.color}`}>{grade.label}</p>
+          <p className="font-mono text-8xl font-black text-gray-800">{score}</p>
+          <p className="text-gray-400">/ 100 点</p>
+        </div>
+
+        <div className="flex w-full max-w-md gap-3">
+          <button
+            onClick={() => router.back()}
+            className="flex-1 rounded bg-red-700 py-4 text-base font-black text-white transition hover:bg-red-600"
+          >
+            ▶ もう一度歌う
+          </button>
+          <button
+            onClick={() => router.push('/')}
+            className="flex-1 rounded border-2 border-gray-400 bg-white py-4 text-base font-black text-gray-600 transition hover:bg-gray-50"
+          >
+            ホームへ
+          </button>
+        </div>
+      </main>
+
+      <footer className="flex h-10 items-center border-t border-gray-300 bg-gray-200 px-4">
+        <p className="text-xs text-gray-400">© UtaLab</p>
+      </footer>
+    </div>
   );
 }
 
