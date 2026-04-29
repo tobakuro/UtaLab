@@ -1,95 +1,33 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { AccompanimentPlayer } from '@/features/karaoke/audio/accompaniment-player';
 import { PitchCanvas } from '@/features/karaoke/components/pitch-canvas';
-import { usePitchDetector } from '@/features/karaoke/hooks/use-pitch-detector';
-import { useScoring } from '@/features/karaoke/hooks/use-scoring';
-import type { MelodyData } from '@/features/karaoke/types/melody';
+import { useKaraokeSession } from '@/features/karaoke/hooks/use-karaoke-session';
 
 const MELODY_URL = '/samples/sample-001.melody.json';
 const SONG_ID = 'sample-001';
 
 export default function TestPage() {
   const router = useRouter();
-  const [melody, setMelody] = useState<MelodyData | null>(null);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
-  const playerRef = useRef<AccompanimentPlayer | null>(null);
-  const animationIdRef = useRef<number | null>(null);
-
-  const { pitchState, error: micError, start: startMic, stop: stopMic } = usePitchDetector();
-  const { recordPitch, finish, reset } = useScoring(SONG_ID);
-
-  useEffect(() => {
-    fetch(MELODY_URL)
-      .then((r) => r.json())
-      .then(setMelody);
-  }, []);
-
-  const tickRef = useRef<() => void>(() => {});
-  const tick = useCallback(() => {
-    if (!playerRef.current) return;
-    setCurrentTime(playerRef.current.getCurrentTime());
-    animationIdRef.current = requestAnimationFrame(tickRef.current);
-  }, []);
-  useEffect(() => {
-    tickRef.current = tick;
-  }, [tick]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      recordPitch(currentTime, pitchState.pitch);
-    }
-  }, [currentTime, pitchState.pitch, isPlaying, recordPitch]);
-
-  const start = useCallback(async () => {
-    if (!melody) return;
-    reset();
-    const player = new AccompanimentPlayer();
-    await player.load(melody.accompaniment);
-    playerRef.current = player;
-    player.play();
-    setIsPlaying(true);
-    animationIdRef.current = requestAnimationFrame(tick);
-    await startMic();
-  }, [melody, tick, startMic, reset]);
-
-  const stop = useCallback(async () => {
-    playerRef.current?.stop();
-    playerRef.current = null;
-    if (animationIdRef.current !== null) {
-      cancelAnimationFrame(animationIdRef.current);
-      animationIdRef.current = null;
-    }
-    stopMic();
-    setIsPlaying(false);
-    setCurrentTime(0);
-
-    if (melody) {
-      const reference = melody.pitches.map((n) => ({
-        time: n.time,
-        freq: n.freq,
-        duration: n.duration,
-      }));
-      const score = await finish(reference);
+  const onFinish = useCallback(
+    (score: number) => {
       router.push(`/result?score=${score}&songId=${SONG_ID}`);
-    }
-  }, [stopMic, melody, finish, router]);
+    },
+    [router],
+  );
 
-  useEffect(() => {
-    return () => {
-      playerRef.current?.stop();
-      if (animationIdRef.current !== null) cancelAnimationFrame(animationIdRef.current);
-    };
-  }, []);
+  const { melody, currentTime, isPlaying, pitchState, micError, start, stop } = useKaraokeSession({
+    songId: SONG_ID,
+    melodyUrl: MELODY_URL,
+    onFinish,
+  });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gray-950 p-8">
-      <h1 className="text-2xl font-bold text-white">Day 3 検証 — 伴奏再生 + ピッチライン</h1>
+      <h1 className="text-2xl font-bold text-white">採点デモ — サンプル曲</h1>
 
       <PitchCanvas
         melodyNotes={melody?.pitches ?? []}
@@ -120,7 +58,7 @@ export default function TestPage() {
           isPlaying ? 'bg-red-600 hover:bg-red-700' : 'bg-cyan-600 hover:bg-cyan-700'
         }`}
       >
-        {isPlaying ? '停止' : '歌う'}
+        {isPlaying ? '停止・採点' : '歌う'}
       </button>
 
       <p className="text-sm text-gray-400">青いバー: お手本メロディ / 緑の点: あなたの声</p>
