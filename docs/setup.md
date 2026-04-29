@@ -325,7 +325,29 @@ WSL2 のネットワーク特性。リトライで完了するなら問題ない
 
 ## 7. 動作確認
 
-### 7.1 Next.js の起動
+### 7.1 PostgreSQL のセットアップ（Phase 2 以降）
+
+```bash
+# 初回のみ：PostgreSQL の初期化・起動・DB 作成
+devbox run setup-db
+
+# .env.local を作成
+cp .env.local.example .env.local
+# DATABASE_URL はそのまま使える（ローカル PostgreSQL 向け設定済み）
+
+# テーブルを作成
+pnpm db:push
+```
+
+> **WSL2 の注意**: PostgreSQL は `/run/postgresql/` ディレクトリがないため Unix ソケットが使えない。`setup-db` スクリプトが `unix_socket_directories = ''` を自動で `postgresql.conf` に追加し、TCP のみで動作させる。
+
+2回目以降の起動:
+
+```bash
+devbox run start-db   # 起動済みなら何もしない
+```
+
+### 7.2 Next.js の起動
 
 ```bash
 pnpm dev
@@ -339,11 +361,11 @@ pnpm dev
 ✓ Ready in 1.5s
 ```
 
-Windows のブラウザで `http://localhost:3000` にアクセスし、Next.js の初期画面が表示されることを確認(WSL の localhost は自動で Windows に転送される)。
+Windows のブラウザで `http://localhost:3000` にアクセスし、ホーム画面が表示されることを確認。
 
 確認できたら Ctrl+C で停止。
 
-### 7.2 Python ワーカーのセットアップ
+### 7.3 Python ワーカーのセットアップ
 
 `worker/` に AI 音声解析ワーカーが用意されている。以下でセットアップする。
 
@@ -457,7 +479,9 @@ gh auth status
 - [ ] Devbox シェル内で `python --version` が 3.11 系
 - [ ] Devbox シェル内で `ffmpeg -version` が表示される
 - [ ] `pnpm install` がエラーなく完了
-- [ ] `pnpm dev` で Next.js の画面が `http://localhost:3000` に表示される
+- [ ] `devbox run setup-db` で「DB ready」が表示される
+- [ ] `pnpm db:push` でテーブルが作成される
+- [ ] `pnpm dev` でホーム画面が `http://localhost:3000` に表示される
 - [ ] `cd worker && uv run python analyze.py --help` がエラーなく動く
 - [ ] `code .` で VS Code が WSL モードで開く
 - [ ] `git config --global user.name` で自分の名前が表示される
