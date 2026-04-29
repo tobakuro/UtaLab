@@ -6,13 +6,30 @@
     "uv@latest",
     "ffmpeg@latest",
     "libsndfile@latest",
-    "git@latest"
+    "git@latest",
+    "postgresql@16"
   ],
   "shell": {
     "init_hook": [
       "echo '🎤 utalab dev environment ready'",
       "echo '   Node: ' $(node -v)",
       "echo '   Python: ' $(python --version)"
-    ]
+    ],
+    "scripts": {
+      "setup-db": [
+        "initdb -D .devbox/pgdata --no-locale --encoding=UTF8 2>/dev/null || true",
+        "grep -q 'unix_socket_directories' .devbox/pgdata/postgresql.conf || echo \"unix_socket_directories = ''\" >> .devbox/pgdata/postgresql.conf",
+        "pg_isready -h 127.0.0.1 -p 5432 -q && echo 'PostgreSQL は既に起動中' || pg_ctl -D .devbox/pgdata -l .devbox/postgres.log start",
+        "sleep 2",
+        "createdb -h 127.0.0.1 utalab 2>/dev/null || true",
+        "echo 'DB ready: postgresql://localhost:5432/utalab'"
+      ],
+      "start-db": [
+        "pg_isready -h 127.0.0.1 -p 5432 -q && echo 'PostgreSQL は既に起動中です' || pg_ctl -D .devbox/pgdata -l .devbox/postgres.log start"
+      ],
+      "stop-db": [
+        "pg_ctl -D .devbox/pgdata stop -m fast"
+      ]
+    }
   }
 }
