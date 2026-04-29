@@ -8,36 +8,36 @@
 
 MVP + Phase 2 完了。
 
-| フェーズ | 内容 | 状態 |
-| -------- | ---- | ---- |
-| MVP (Day 1〜7) | カラオケ採点 + AI 音声解析 + 統合 | ✅ 完了 |
-| Phase 2 | PostgreSQL + Drizzle / スコア DB 保存 / マイ楽曲一覧 | ✅ 完了 |
-| Phase 2 残 | Auth.js による認証 | 未着手 |
-| Phase 3 | Python Worker → Modal / Cloudflare R2 / Inngest | 未着手 |
-| Phase 4 | ビブラート・リズム採点 / WhisperX 歌詞同期 | 未着手 |
-| Phase 5 | PWA 化 / モバイル最適化 | 未着手 |
+| フェーズ       | 内容                                                 | 状態    |
+| -------------- | ---------------------------------------------------- | ------- |
+| MVP (Day 1〜7) | カラオケ採点 + AI 音声解析 + 統合                    | ✅ 完了 |
+| Phase 2        | PostgreSQL + Drizzle / スコア DB 保存 / マイ楽曲一覧 | ✅ 完了 |
+| Phase 2 残     | Auth.js による認証                                   | 未着手  |
+| Phase 3        | Python Worker → Modal / Cloudflare R2 / Inngest      | 未着手  |
+| Phase 4        | ビブラート・リズム採点 / WhisperX 歌詞同期           | 未着手  |
+| Phase 5        | PWA 化 / モバイル最適化                              | 未着手  |
 
 ---
 
 ## このセッションでの変更ファイル
 
-| ファイル | 区分 | 変更内容の要点 |
-| -------- | ---- | -------------- |
-| `src/app/page.tsx` | 既存変更 | マイ楽曲ボタンを `/songs` リンクに有効化 |
-| `src/app/upload/page.tsx` | 既存変更 | タイトル入力フィールド・4段階進捗バー追加 |
-| `src/components/layouts/page-header.tsx` | 既存変更 | マイ楽曲タブ（`/songs`）をナビに追加 |
-| `src/app/api/analyze/route.ts` | 既存変更 | stderr キャプチャ・`songs` テーブル INSERT 追加 |
-| `src/features/karaoke/hooks/use-scoring.ts` | 既存変更 | `LocalStorageScoreRepository` → `ApiScoreRepository` に切り替え |
-| `worker/analyze.py` | 既存変更 | CREPE → librosa pyin に置き換え |
-| `worker/pyproject.toml` | 既存変更 | CPU 専用 torch インデックス追加、crepe 削除 |
-| `devbox.json` | 既存変更 | `postgresql@16` 追加、`setup-db` / `start-db` / `stop-db` スクリプト追加 |
-| `src/db/schema.ts` | 新規 | `songs` / `scores` テーブル定義 |
-| `src/db/index.ts` | 新規 | `getDb()` lazy 初期化 |
-| `drizzle.config.ts` | 新規 | Drizzle Kit 設定（dotenv 読み込み含む） |
-| `src/app/api/scores/route.ts` | 新規 | スコア保存・取得 API |
-| `src/app/songs/page.tsx` | 新規 | マイ楽曲一覧 Server Component |
-| `src/features/karaoke/repositories/api-score-repository.ts` | 新規 | API 経由スコア保存実装 |
-| `README.md` / `docs/commands.md` / `docs/setup.md` | ドキュメント | Phase 2 対応に更新 |
+| ファイル                                                    | 区分         | 変更内容の要点                                                           |
+| ----------------------------------------------------------- | ------------ | ------------------------------------------------------------------------ |
+| `src/app/page.tsx`                                          | 既存変更     | マイ楽曲ボタンを `/songs` リンクに有効化                                 |
+| `src/app/upload/page.tsx`                                   | 既存変更     | タイトル入力フィールド・4段階進捗バー追加                                |
+| `src/components/layouts/page-header.tsx`                    | 既存変更     | マイ楽曲タブ（`/songs`）をナビに追加                                     |
+| `src/app/api/analyze/route.ts`                              | 既存変更     | stderr キャプチャ・`songs` テーブル INSERT 追加                          |
+| `src/features/karaoke/hooks/use-scoring.ts`                 | 既存変更     | `LocalStorageScoreRepository` → `ApiScoreRepository` に切り替え          |
+| `worker/analyze.py`                                         | 既存変更     | CREPE → librosa pyin に置き換え                                          |
+| `worker/pyproject.toml`                                     | 既存変更     | CPU 専用 torch インデックス追加、crepe 削除                              |
+| `devbox.json`                                               | 既存変更     | `postgresql@16` 追加、`setup-db` / `start-db` / `stop-db` スクリプト追加 |
+| `src/db/schema.ts`                                          | 新規         | `songs` / `scores` テーブル定義                                          |
+| `src/db/index.ts`                                           | 新規         | `getDb()` lazy 初期化                                                    |
+| `drizzle.config.ts`                                         | 新規         | Drizzle Kit 設定（dotenv 読み込み含む）                                  |
+| `src/app/api/scores/route.ts`                               | 新規         | スコア保存・取得 API                                                     |
+| `src/app/songs/page.tsx`                                    | 新規         | マイ楽曲一覧 Server Component                                            |
+| `src/features/karaoke/repositories/api-score-repository.ts` | 新規         | API 経由スコア保存実装                                                   |
+| `README.md` / `docs/commands.md` / `docs/setup.md`          | ドキュメント | Phase 2 対応に更新                                                       |
 
 ---
 
@@ -180,6 +180,7 @@ torchaudio = { index = "pytorch-cpu" }
 ```
 
 venv を再同期するには:
+
 ```bash
 cd worker && uv sync
 ```
@@ -206,10 +207,10 @@ config({ path: '.env.local' });
 
 ## 参照ドキュメント
 
-| ファイル | 内容 |
-| -------- | ---- |
-| `docs/overview.md` | プロダクト概要・技術スタック |
-| `docs/mvp-roadmap.md` | Day 別の詳細タスク |
-| `docs/setup.md` | 環境構築手順（DB セットアップ含む） |
-| `docs/commands.md` | 日常コマンドリファレンス |
-| `lookingback/pitchy.md` | pitchy 導入でてこずった経緯まとめ |
+| ファイル                | 内容                                |
+| ----------------------- | ----------------------------------- |
+| `docs/overview.md`      | プロダクト概要・技術スタック        |
+| `docs/mvp-roadmap.md`   | Day 別の詳細タスク                  |
+| `docs/setup.md`         | 環境構築手順（DB セットアップ含む） |
+| `docs/commands.md`      | 日常コマンドリファレンス            |
+| `lookingback/pitchy.md` | pitchy 導入でてこずった経緯まとめ   |

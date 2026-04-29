@@ -27,9 +27,7 @@
       "start-db": [
         "pg_isready -h 127.0.0.1 -p 5432 -q && echo 'PostgreSQL は既に起動中です' || pg_ctl -D .devbox/pgdata -l .devbox/postgres.log start"
       ],
-      "stop-db": [
-        "pg_ctl -D .devbox/pgdata stop -m fast"
-      ]
+      "stop-db": ["pg_ctl -D .devbox/pgdata stop -m fast"]
     }
   }
 }

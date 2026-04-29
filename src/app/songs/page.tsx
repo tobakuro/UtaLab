@@ -11,9 +11,7 @@ async function getSongsWithBestScore() {
   const db = getDb();
   const allSongs = await db.select().from(songs).orderBy(desc(songs.createdAt));
 
-  const scoreRows = await db
-    .select({ songId: scores.songId, value: scores.value })
-    .from(scores);
+  const scoreRows = await db.select({ songId: scores.songId, value: scores.value }).from(scores);
 
   const bestScoreBySong = new Map<string, number>();
   for (const row of scoreRows) {
@@ -59,7 +57,10 @@ export default async function SongsPage() {
         ) : (
           <ul className="w-full max-w-3xl divide-y divide-gray-200 overflow-hidden rounded border border-gray-300 bg-white">
             {songList.map((song) => (
-              <li key={song.id} className="flex items-center justify-between px-4 py-3 hover:bg-gray-50">
+              <li
+                key={song.id}
+                className="flex items-center justify-between px-4 py-3 hover:bg-gray-50"
+              >
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-bold text-gray-800">{song.title}</p>
                   <p className="text-xs text-gray-400">

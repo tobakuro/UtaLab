@@ -8,15 +8,15 @@ JOYSOUND のような採点機能を備えつつ、**「音声ファイルとし
 
 ## 技術スタック
 
-| カテゴリ | 技術 |
-|---------|------|
-| フロントエンド | Next.js 16 (App Router) + TypeScript |
-| スタイリング | Tailwind CSS v4 |
-| 音声処理 (クライアント) | Web Audio API, AudioWorklet, pitchy (McLeod Pitch Method) |
-| AI 解析 (サーバー) | Python 3.11, Demucs (ボーカル分離), librosa pyin (ピッチ抽出) |
-| バックエンド | Next.js Route Handlers, Node.js 22 |
-| DB | PostgreSQL 16 + Drizzle ORM |
-| 開発環境 | Devbox (Nix), pnpm, uv, WSL2 |
+| カテゴリ                | 技術                                                          |
+| ----------------------- | ------------------------------------------------------------- |
+| フロントエンド          | Next.js 16 (App Router) + TypeScript                          |
+| スタイリング            | Tailwind CSS v4                                               |
+| 音声処理 (クライアント) | Web Audio API, AudioWorklet, pitchy (McLeod Pitch Method)     |
+| AI 解析 (サーバー)      | Python 3.11, Demucs (ボーカル分離), librosa pyin (ピッチ抽出) |
+| バックエンド            | Next.js Route Handlers, Node.js 22                            |
+| DB                      | PostgreSQL 16 + Drizzle ORM                                   |
+| 開発環境                | Devbox (Nix), pnpm, uv, WSL2                                  |
 
 ---
 
@@ -100,14 +100,14 @@ uv run python analyze.py <音声ファイル> <出力ディレクトリ>
 
 ## 画面構成
 
-| URL | 説明 |
-|-----|------|
-| `/` | ホーム |
-| `/upload` | 音声ファイルのアップロード・解析 |
-| `/songs` | マイ楽曲一覧（解析済み楽曲 + ベストスコア） |
-| `/karaoke/[id]` | カラオケ採点画面 |
-| `/result` | 採点結果表示 |
-| `/test` | サンプル曲でのデモ |
+| URL             | 説明                                        |
+| --------------- | ------------------------------------------- |
+| `/`             | ホーム                                      |
+| `/upload`       | 音声ファイルのアップロード・解析            |
+| `/songs`        | マイ楽曲一覧（解析済み楽曲 + ベストスコア） |
+| `/karaoke/[id]` | カラオケ採点画面                            |
+| `/result`       | 採点結果表示                                |
+| `/test`         | サンプル曲でのデモ                          |
 
 ---
 
