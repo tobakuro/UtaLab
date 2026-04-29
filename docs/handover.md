@@ -8,15 +8,15 @@
 
 MVP ロードマップ **完了**。
 
-| Day   | 内容                                           | 状態   |
-| ----- | ---------------------------------------------- | ------ |
-| Day 1 | Web Audio API でマイク波形表示                 | 完了   |
-| Day 2 | AudioWorklet + pitchy でリアルタイムピッチ検出 | 完了   |
-| Day 3 | 伴奏再生 + 時刻同期 + Canvas ピッチライン描画  | 完了   |
-| Day 4 | 採点ロジック + 結果画面                        | 完了   |
-| Day 5 | Python で Demucs + CREPE                       | 完了   |
-| Day 6 | フロントエンドと統合                           | 完了   |
-| Day 7 | UI 調整 + エラーハンドリング                   | 完了   |
+| Day   | 内容                                           | 状態 |
+| ----- | ---------------------------------------------- | ---- |
+| Day 1 | Web Audio API でマイク波形表示                 | 完了 |
+| Day 2 | AudioWorklet + pitchy でリアルタイムピッチ検出 | 完了 |
+| Day 3 | 伴奏再生 + 時刻同期 + Canvas ピッチライン描画  | 完了 |
+| Day 4 | 採点ロジック + 結果画面                        | 完了 |
+| Day 5 | Python で Demucs + CREPE                       | 完了 |
+| Day 6 | フロントエンドと統合                           | 完了 |
+| Day 7 | UI 調整 + エラーハンドリング                   | 完了 |
 
 ---
 
@@ -37,12 +37,12 @@ MVP ロードマップ **完了**。
 
 ## 次フェーズ（Phase 2 以降）
 
-| フェーズ | 内容 |
-| -------- | ---- |
-| Phase 2 | PostgreSQL + Drizzle / Auth.js / スコア履歴 DB 保存 |
-| Phase 3 | Python Worker → Modal.com / ストレージ → Cloudflare R2 / Inngest ジョブキュー |
-| Phase 4 | ビブラート・しゃくり・リズム採点 / WhisperX 歌詞同期 |
-| Phase 5 | PWA 化 / モバイル最適化 |
+| フェーズ | 内容                                                                          |
+| -------- | ----------------------------------------------------------------------------- |
+| Phase 2  | PostgreSQL + Drizzle / Auth.js / スコア履歴 DB 保存                           |
+| Phase 3  | Python Worker → Modal.com / ストレージ → Cloudflare R2 / Inngest ジョブキュー |
+| Phase 4  | ビブラート・しゃくり・リズム採点 / WhisperX 歌詞同期                          |
+| Phase 5  | PWA 化 / モバイル最適化                                                       |
 
 ---
 

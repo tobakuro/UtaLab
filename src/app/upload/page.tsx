@@ -42,7 +42,9 @@ export default function UploadPage() {
         <div className="flex w-full max-w-lg flex-col gap-6">
           <div className="rounded border-b-2 border-red-700 bg-white px-4 py-3">
             <h1 className="text-base font-black text-gray-800">曲をアップロード</h1>
-            <p className="text-xs text-gray-500">音声ファイルをアップロードすると、AI が自動解析してカラオケ採点ができます</p>
+            <p className="text-xs text-gray-500">
+              音声ファイルをアップロードすると、AI が自動解析してカラオケ採点ができます
+            </p>
           </div>
 
           <div
@@ -89,7 +91,9 @@ export default function UploadPage() {
       </main>
 
       <footer className="flex h-10 items-center border-t border-gray-300 bg-gray-200 px-4">
-        <p className="text-xs text-gray-400">解析には1〜2分かかります。イヤホン装着を推奨します。</p>
+        <p className="text-xs text-gray-400">
+          解析には1〜2分かかります。イヤホン装着を推奨します。
+        </p>
       </footer>
     </div>
   );

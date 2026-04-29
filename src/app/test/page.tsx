@@ -26,7 +26,9 @@ export default function TestPage() {
   const { recordPitch, finish, reset } = useScoring(SONG_ID);
 
   useEffect(() => {
-    fetch(MELODY_URL).then((r) => r.json()).then(setMelody);
+    fetch(MELODY_URL)
+      .then((r) => r.json())
+      .then(setMelody);
   }, []);
 
   const tickRef = useRef<() => void>(() => {});
@@ -35,7 +37,9 @@ export default function TestPage() {
     setCurrentTime(playerRef.current.getCurrentTime());
     animationIdRef.current = requestAnimationFrame(tickRef.current);
   }, []);
-  useEffect(() => { tickRef.current = tick; }, [tick]);
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   useEffect(() => {
     if (isPlaying) recordPitch(currentTime, pitchState.pitch);
@@ -64,7 +68,11 @@ export default function TestPage() {
     setIsPlaying(false);
     setCurrentTime(0);
     if (melody) {
-      const reference = melody.pitches.map((n) => ({ time: n.time, freq: n.freq, duration: n.duration }));
+      const reference = melody.pitches.map((n) => ({
+        time: n.time,
+        freq: n.freq,
+        duration: n.duration,
+      }));
       const score = await finish(reference);
       router.push(`/result?score=${score}&songId=${SONG_ID}`);
     }
@@ -130,7 +138,9 @@ export default function TestPage() {
       </main>
 
       <footer className="flex h-10 items-center border-t border-gray-300 bg-gray-200 px-4">
-        <p className="text-xs text-gray-400">イヤホン装着を推奨します。マイクへのアクセス許可が必要です。</p>
+        <p className="text-xs text-gray-400">
+          イヤホン装着を推奨します。マイクへのアクセス許可が必要です。
+        </p>
       </footer>
     </div>
   );

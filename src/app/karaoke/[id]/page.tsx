@@ -41,7 +41,9 @@ export default function KaraokePage() {
     setCurrentTime(playerRef.current.getCurrentTime());
     animationIdRef.current = requestAnimationFrame(tickRef.current);
   }, []);
-  useEffect(() => { tickRef.current = tick; }, [tick]);
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   useEffect(() => {
     if (isPlaying) recordPitch(currentTime, pitchState.pitch);
@@ -70,7 +72,11 @@ export default function KaraokePage() {
     setIsPlaying(false);
     setCurrentTime(0);
     if (melody) {
-      const reference = melody.pitches.map((n) => ({ time: n.time, freq: n.freq, duration: n.duration }));
+      const reference = melody.pitches.map((n) => ({
+        time: n.time,
+        freq: n.freq,
+        duration: n.duration,
+      }));
       const score = await finish(reference);
       router.push(`/result?score=${score}&songId=${encodeURIComponent(melody.title)}`);
     }
@@ -91,7 +97,10 @@ export default function KaraokePage() {
           <div className="rounded bg-red-50 px-6 py-4 text-sm font-bold text-red-700">
             ⚠ 楽曲データの読み込みに失敗しました。
           </div>
-          <Link href="/upload" className="rounded bg-red-700 px-8 py-3 font-black text-white hover:bg-red-600">
+          <Link
+            href="/upload"
+            className="rounded bg-red-700 px-8 py-3 font-black text-white hover:bg-red-600"
+          >
             アップロードへ戻る
           </Link>
         </main>
@@ -152,7 +161,9 @@ export default function KaraokePage() {
       </main>
 
       <footer className="flex h-10 items-center border-t border-gray-300 bg-gray-200 px-4">
-        <p className="text-xs text-gray-400">イヤホン装着を推奨します。マイクへのアクセス許可が必要です。</p>
+        <p className="text-xs text-gray-400">
+          イヤホン装着を推奨します。マイクへのアクセス許可が必要です。
+        </p>
       </footer>
     </div>
   );

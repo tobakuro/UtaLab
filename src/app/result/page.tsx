@@ -12,10 +12,13 @@ function ResultContent() {
   const songId = params.get('songId') ?? '';
 
   const grade =
-    score >= 90 ? { label: '★★★ 超上手い！', color: 'text-red-700' }
-    : score >= 70 ? { label: '★★☆ 上手い！', color: 'text-orange-600' }
-    : score >= 50 ? { label: '★☆☆ まあまあ', color: 'text-yellow-600' }
-    : { label: '☆☆☆ がんばろう', color: 'text-gray-500' };
+    score >= 90
+      ? { label: '★★★ 超上手い！', color: 'text-red-700' }
+      : score >= 70
+        ? { label: '★★☆ 上手い！', color: 'text-orange-600' }
+        : score >= 50
+          ? { label: '★☆☆ まあまあ', color: 'text-yellow-600' }
+          : { label: '☆☆☆ がんばろう', color: 'text-gray-500' };
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-100">

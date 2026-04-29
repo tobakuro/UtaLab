@@ -72,9 +72,19 @@ function MidButton({
   );
 }
 
-function SmallButton({ icon, label, color = 'bg-indigo-950' }: { icon: string; label: string; color?: string }) {
+function SmallButton({
+  icon,
+  label,
+  color = 'bg-indigo-950',
+}: {
+  icon: string;
+  label: string;
+  color?: string;
+}) {
   return (
-    <div className={`flex items-center justify-center gap-1 rounded text-xs font-bold text-gray-300 ${color}`}>
+    <div
+      className={`flex items-center justify-center gap-1 rounded text-xs font-bold text-gray-300 ${color}`}
+    >
       <span>{icon}</span>
       <span>{label}</span>
     </div>
@@ -141,20 +151,8 @@ export default function Home() {
 
           {/* Row 2: 中ボタン */}
           <div className="grid h-20 grid-cols-2 gap-2">
-            <MidButton
-              href="#"
-              icon="📂"
-              label="マイ楽曲"
-              color="bg-orange-700"
-              disabled
-            />
-            <MidButton
-              href="#"
-              icon="📊"
-              label="スコア履歴"
-              color="bg-teal-800"
-              disabled
-            />
+            <MidButton href="#" icon="📂" label="マイ楽曲" color="bg-orange-700" disabled />
+            <MidButton href="#" icon="📊" label="スコア履歴" color="bg-teal-800" disabled />
           </div>
 
           {/* Row 3: 小ボタン */}
@@ -208,7 +206,8 @@ export default function Home() {
           お知らせ
         </span>
         <span className="text-xs text-gray-500">
-          MVP バージョン — 現在は個人利用のみ対応。音声ファイルをアップロードしてカラオケを楽しもう！
+          MVP バージョン —
+          現在は個人利用のみ対応。音声ファイルをアップロードしてカラオケを楽しもう！
         </span>
       </div>
 
