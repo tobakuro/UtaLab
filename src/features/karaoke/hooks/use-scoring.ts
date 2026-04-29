@@ -2,11 +2,11 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-import { LocalStorageScoreRepository } from '@/features/karaoke/repositories/local-storage-score-repository';
+import { ApiScoreRepository } from '@/features/karaoke/repositories/api-score-repository';
 import { pitchScorer } from '@/features/karaoke/scoring/scorers/pitch-scorer';
 import type { PitchFrame } from '@/features/karaoke/scoring/types';
 
-const repository = new LocalStorageScoreRepository();
+const repository = new ApiScoreRepository();
 
 export function useScoring(songId: string) {
   const userFramesRef = useRef<PitchFrame[]>([]);

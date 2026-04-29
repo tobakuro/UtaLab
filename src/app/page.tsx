@@ -39,6 +39,20 @@ export default function Home() {
             </Link>
           </div>
 
+          <div className="grid h-20 grid-cols-2 gap-2">
+            <Link
+              href="/songs"
+              className="flex items-center justify-center gap-2 rounded bg-orange-700 text-sm font-bold text-white transition-opacity hover:opacity-90"
+            >
+              <span>📂</span>
+              <span>マイ楽曲</span>
+            </Link>
+            <div className="flex items-center justify-center gap-2 rounded bg-gray-400 text-sm font-bold text-white opacity-50 cursor-not-allowed">
+              <span>📊</span>
+              <span>スコア履歴</span>
+            </div>
+          </div>
+
           <div className="grid h-10 grid-cols-2 gap-2">
             <div className="flex items-center gap-2 rounded border border-gray-400 bg-white px-3 text-xs text-gray-600">
               <span>🎧</span>

@@ -5,8 +5,8 @@ Usage:
     uv run python analyze.py <input_audio> <output_dir>
 
 Output:
-    <output_dir>/accompaniment.wav  -- ボーカル除去済み伴奏
-    <output_dir>/melody.json        -- ピッチ列JSON
+    <output_dir>/accompaniment.wav  -- ボーカル除去済み伴奏 (Demucs)
+    <output_dir>/melody.json        -- ピッチ列JSON (librosa pyin)
 """
 
 import json
@@ -16,13 +16,10 @@ import sys
 import tempfile
 from pathlib import Path
 
-import crepe
 import librosa
 import numpy as np
-import soundfile as sf
 
 
-CONFIDENCE_THRESHOLD = 0.5
 SAMPLE_RATE = 16000
 
 
@@ -37,32 +34,39 @@ def separate_vocals(input_path: Path, work_dir: Path) -> tuple[Path, Path]:
 
 
 def extract_melody(vocals_path: Path) -> tuple[list[dict], float]:
-    """CREPE でピッチ列を抽出する。(pitches, duration) を返す。"""
+    """pyin でピッチ列を抽出する。(pitches, duration) を返す。"""
     audio, sr = librosa.load(str(vocals_path), sr=SAMPLE_RATE, mono=True)
     duration = len(audio) / sr
 
-    times, frequencies, confidences, _ = crepe.predict(
-        audio, sr, viterbi=True, verbose=0
+    f0, voiced_flag, _ = librosa.pyin(
+        audio,
+        fmin=librosa.note_to_hz('C2'),
+        fmax=librosa.note_to_hz('C7'),
+        sr=sr,
     )
+    times = librosa.times_like(f0, sr=sr)
 
     pitches = []
     i = 0
     while i < len(times):
-        if confidences[i] < CONFIDENCE_THRESHOLD:
+        if not voiced_flag[i]:
             i += 1
             continue
 
-        # 同じ信頼度以上が続く区間をまとめてノートにする
         start = i
-        while i < len(times) and confidences[i] >= CONFIDENCE_THRESHOLD:
+        while i < len(times) and voiced_flag[i]:
             i += 1
         end = i - 1
 
-        freq = float(np.median(frequencies[start : end + 1]))
-        note_duration = float(times[end] - times[start]) + 0.01  # 最小幅
-        pitches.append(
-            {"time": round(float(times[start]), 3), "freq": round(freq, 2), "duration": round(note_duration, 3)}
-        )
+        freq = float(np.median(f0[start : end + 1]))
+        if np.isnan(freq) or freq <= 0:
+            continue
+        note_duration = float(times[end] - times[start]) + 0.01
+        pitches.append({
+            "time": round(float(times[start]), 3),
+            "freq": round(freq, 2),
+            "duration": round(note_duration, 3),
+        })
 
     return pitches, duration
 
@@ -79,7 +83,7 @@ def analyze(input_path: str, output_dir: str) -> dict:
         print(f"[1/3] Demucs でボーカル分離中: {inp.name}")
         vocals, no_vocals = separate_vocals(inp, tmp_path)
 
-        print("[2/3] CREPE でメロディ抽出中...")
+        print("[2/3] pyin でメロディ抽出中...")
         pitches, duration = extract_melody(vocals)
 
         print("[3/3] 結果を保存中...")

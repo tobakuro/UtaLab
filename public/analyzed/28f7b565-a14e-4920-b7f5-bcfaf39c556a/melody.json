@@ -1,0 +1,598 @@
+{
+  "songId": "28f7b565-a14e-4920-b7f5-bcfaf39c556a",
+  "title": "シャイニングスター",
+  "accompaniment": "/analyzed/28f7b565-a14e-4920-b7f5-bcfaf39c556a/accompaniment.wav",
+  "duration": 276.793,
+  "pitches": [
+    {
+      "time": 0.8,
+      "freq": 139.39,
+      "duration": 0.778
+    },
+    {
+      "time": 1.632,
+      "freq": 282.84,
+      "duration": 0.554
+    },
+    {
+      "time": 2.368,
+      "freq": 294.96,
+      "duration": 0.682
+    },
+    {
+      "time": 3.68,
+      "freq": 278.79,
+      "duration": 1.482
+    },
+    {
+      "time": 5.248,
+      "freq": 278.79,
+      "duration": 0.81
+    },
+    {
+      "time": 6.112,
+      "freq": 139.39,
+      "duration": 0.266
+    },
+    {
+      "time": 10.688,
+      "freq": 280.4,
+      "duration": 1.098
+    },
+    {
+      "time": 12.096,
+      "freq": 285.3,
+      "duration": 0.202
+    },
+    {
+      "time": 12.608,
+      "freq": 273.21,
+      "duration": 0.746
+    },
+    {
+      "time": 13.664,
+      "freq": 278.79,
+      "duration": 0.202
+    },
+    {
+      "time": 13.92,
+      "freq": 282.03,
+      "duration": 0.842
+    },
+    {
+      "time": 18.08,
+      "freq": 282.03,
+      "duration": 3.626
+    },
+    {
+      "time": 21.76,
+      "freq": 286.96,
+      "duration": 2.858
+    },
+    {
+      "time": 24.832,
+      "freq": 277.18,
+      "duration": 2.986
+    },
+    {
+      "time": 27.936,
+      "freq": 307.55,
+      "duration": 2.89
+    },
+    {
+      "time": 30.88,
+      "freq": 278.79,
+      "duration": 0.714
+    },
+    {
+      "time": 31.808,
+      "freq": 277.18,
+      "duration": 1.194
+    },
+    {
+      "time": 33.088,
+      "freq": 351.25,
+      "duration": 0.65
+    },
+    {
+      "time": 34.016,
+      "freq": 410.53,
+      "duration": 1.482
+    },
+    {
+      "time": 35.616,
+      "freq": 277.18,
+      "duration": 1.162
+    },
+    {
+      "time": 36.992,
+      "freq": 278.79,
+      "duration": 1.994
+    },
+    {
+      "time": 39.104,
+      "freq": 331.54,
+      "duration": 0.778
+    },
+    {
+      "time": 40.032,
+      "freq": 349.23,
+      "duration": 0.33
+    },
+    {
+      "time": 40.448,
+      "freq": 282.03,
+      "duration": 2.538
+    },
+    {
+      "time": 43.2,
+      "freq": 285.3,
+      "duration": 2.57
+    },
+    {
+      "time": 46.144,
+      "freq": 301.4,
+      "duration": 2.922
+    },
+    {
+      "time": 49.184,
+      "freq": 275.59,
+      "duration": 0.138
+    },
+    {
+      "time": 49.376,
+      "freq": 415.3,
+      "duration": 4.49
+    },
+    {
+      "time": 53.92,
+      "freq": 123.47,
+      "duration": 1.45
+    },
+    {
+      "time": 55.552,
+      "freq": 164.81,
+      "duration": 0.394
+    },
+    {
+      "time": 56.64,
+      "freq": 398.85,
+      "duration": 2.634
+    },
+    {
+      "time": 59.36,
+      "freq": 372.14,
+      "duration": 2.474
+    },
+    {
+      "time": 61.888,
+      "freq": 554.37,
+      "duration": 0.554
+    },
+    {
+      "time": 62.624,
+      "freq": 523.25,
+      "duration": 3.114
+    },
+    {
+      "time": 65.92,
+      "freq": 415.3,
+      "duration": 2.506
+    },
+    {
+      "time": 68.736,
+      "freq": 408.17,
+      "duration": 2.698
+    },
+    {
+      "time": 71.584,
+      "freq": 396.55,
+      "duration": 0.33
+    },
+    {
+      "time": 72,
+      "freq": 366.8,
+      "duration": 0.682
+    },
+    {
+      "time": 72.832,
+      "freq": 523.25,
+      "duration": 5.002
+    },
+    {
+      "time": 78.016,
+      "freq": 358.46,
+      "duration": 0.362
+    },
+    {
+      "time": 78.432,
+      "freq": 375.38,
+      "duration": 0.682
+    },
+    {
+      "time": 79.168,
+      "freq": 426.26,
+      "duration": 1.706
+    },
+    {
+      "time": 81.056,
+      "freq": 311.13,
+      "duration": 0.138
+    },
+    {
+      "time": 81.248,
+      "freq": 554.37,
+      "duration": 5.962
+    },
+    {
+      "time": 87.328,
+      "freq": 137.79,
+      "duration": 0.298
+    },
+    {
+      "time": 87.712,
+      "freq": 275.59,
+      "duration": 0.682
+    },
+    {
+      "time": 88.576,
+      "freq": 138.59,
+      "duration": 0.298
+    },
+    {
+      "time": 88.992,
+      "freq": 463.48,
+      "duration": 0.33
+    },
+    {
+      "time": 89.376,
+      "freq": 275.59,
+      "duration": 0.458
+    },
+    {
+      "time": 91.264,
+      "freq": 278.79,
+      "duration": 0.906
+    },
+    {
+      "time": 97.216,
+      "freq": 282.03,
+      "duration": 1.226
+    },
+    {
+      "time": 100.096,
+      "freq": 1380.89,
+      "duration": 0.362
+    },
+    {
+      "time": 100.8,
+      "freq": 278.79,
+      "duration": 2.762
+    },
+    {
+      "time": 103.744,
+      "freq": 291.97,
+      "duration": 2.89
+    },
+    {
+      "time": 106.912,
+      "freq": 278.79,
+      "duration": 6.186
+    },
+    {
+      "time": 113.152,
+      "freq": 282.03,
+      "duration": 2.442
+    },
+    {
+      "time": 116,
+      "freq": 322.1,
+      "duration": 2.186
+    },
+    {
+      "time": 118.24,
+      "freq": 282.03,
+      "duration": 0.714
+    },
+    {
+      "time": 119.04,
+      "freq": 412.91,
+      "duration": 2.858
+    },
+    {
+      "time": 122.368,
+      "freq": 384.15,
+      "duration": 1.066
+    },
+    {
+      "time": 123.488,
+      "freq": 493.88,
+      "duration": 1.898
+    },
+    {
+      "time": 125.536,
+      "freq": 248.37,
+      "duration": 0.17
+    },
+    {
+      "time": 126.048,
+      "freq": 357.4,
+      "duration": 0.17
+    },
+    {
+      "time": 126.464,
+      "freq": 410.53,
+      "duration": 2.026
+    },
+    {
+      "time": 128.544,
+      "freq": 279.6,
+      "duration": 1.642
+    },
+    {
+      "time": 130.304,
+      "freq": 312.93,
+      "duration": 0.458
+    },
+    {
+      "time": 130.816,
+      "freq": 498.18,
+      "duration": 7.466
+    },
+    {
+      "time": 138.592,
+      "freq": 412.91,
+      "duration": 2.09
+    },
+    {
+      "time": 140.928,
+      "freq": 275.59,
+      "duration": 0.394
+    },
+    {
+      "time": 141.472,
+      "freq": 517.24,
+      "duration": 6.314
+    },
+    {
+      "time": 147.904,
+      "freq": 372.14,
+      "duration": 2.89
+    },
+    {
+      "time": 150.944,
+      "freq": 325.84,
+      "duration": 0.522
+    },
+    {
+      "time": 151.552,
+      "freq": 551.17,
+      "duration": 7.114
+    },
+    {
+      "time": 158.848,
+      "freq": 554.37,
+      "duration": 0.138
+    },
+    {
+      "time": 159.168,
+      "freq": 207.65,
+      "duration": 0.49
+    },
+    {
+      "time": 159.744,
+      "freq": 208.86,
+      "duration": 0.33
+    },
+    {
+      "time": 160.128,
+      "freq": 220,
+      "duration": 0.778
+    },
+    {
+      "time": 168.32,
+      "freq": 196,
+      "duration": 0.842
+    },
+    {
+      "time": 181.152,
+      "freq": 396.55,
+      "duration": 2.666
+    },
+    {
+      "time": 183.968,
+      "freq": 272.42,
+      "duration": 0.17
+    },
+    {
+      "time": 184.192,
+      "freq": 362.6,
+      "duration": 0.682
+    },
+    {
+      "time": 184.992,
+      "freq": 312.93,
+      "duration": 0.458
+    },
+    {
+      "time": 185.504,
+      "freq": 521.74,
+      "duration": 1.45
+    },
+    {
+      "time": 187.168,
+      "freq": 523.25,
+      "duration": 3.146
+    },
+    {
+      "time": 190.464,
+      "freq": 420.13,
+      "duration": 2.506
+    },
+    {
+      "time": 193.28,
+      "freq": 412.91,
+      "duration": 2.218
+    },
+    {
+      "time": 195.584,
+      "freq": 275.59,
+      "duration": 0.394
+    },
+    {
+      "time": 196.16,
+      "freq": 404.65,
+      "duration": 2.922
+    },
+    {
+      "time": 199.328,
+      "freq": 523.25,
+      "duration": 3.114
+    },
+    {
+      "time": 202.592,
+      "freq": 367.86,
+      "duration": 0.714
+    },
+    {
+      "time": 203.36,
+      "freq": 442.55,
+      "duration": 1.546
+    },
+    {
+      "time": 205.056,
+      "freq": 378.64,
+      "duration": 3.082
+    },
+    {
+      "time": 208.224,
+      "freq": 410.53,
+      "duration": 3.018
+    },
+    {
+      "time": 211.488,
+      "freq": 523.25,
+      "duration": 3.114
+    },
+    {
+      "time": 214.784,
+      "freq": 415.3,
+      "duration": 2.506
+    },
+    {
+      "time": 217.6,
+      "freq": 410.53,
+      "duration": 1.994
+    },
+    {
+      "time": 219.904,
+      "freq": 275.59,
+      "duration": 0.426
+    },
+    {
+      "time": 220.448,
+      "freq": 520.24,
+      "duration": 6.314
+    },
+    {
+      "time": 226.88,
+      "freq": 369.99,
+      "duration": 1.098
+    },
+    {
+      "time": 228.032,
+      "freq": 432.44,
+      "duration": 1.674
+    },
+    {
+      "time": 229.888,
+      "freq": 554.37,
+      "duration": 6.25
+    },
+    {
+      "time": 236.288,
+      "freq": 333.46,
+      "duration": 2.922
+    },
+    {
+      "time": 239.392,
+      "freq": 333.46,
+      "duration": 2.762
+    },
+    {
+      "time": 242.304,
+      "freq": 329.63,
+      "duration": 2.858
+    },
+    {
+      "time": 245.44,
+      "freq": 369.99,
+      "duration": 3.114
+    },
+    {
+      "time": 248.608,
+      "freq": 207.65,
+      "duration": 3.914
+    },
+    {
+      "time": 252.608,
+      "freq": 309.34,
+      "duration": 0.586
+    },
+    {
+      "time": 253.536,
+      "freq": 217.47,
+      "duration": 1.098
+    },
+    {
+      "time": 255.008,
+      "freq": 231.74,
+      "duration": 1.034
+    },
+    {
+      "time": 260.992,
+      "freq": 69.3,
+      "duration": 1.13
+    },
+    {
+      "time": 262.176,
+      "freq": 69.3,
+      "duration": 1.322
+    },
+    {
+      "time": 263.552,
+      "freq": 69.3,
+      "duration": 1.002
+    },
+    {
+      "time": 264.864,
+      "freq": 69.3,
+      "duration": 0.362
+    },
+    {
+      "time": 265.44,
+      "freq": 69.3,
+      "duration": 0.298
+    },
+    {
+      "time": 265.92,
+      "freq": 69.3,
+      "duration": 0.586
+    },
+    {
+      "time": 266.656,
+      "freq": 69.3,
+      "duration": 0.458
+    },
+    {
+      "time": 267.168,
+      "freq": 69.3,
+      "duration": 0.362
+    },
+    {
+      "time": 267.616,
+      "freq": 69.3,
+      "duration": 1.066
+    }
+  ]
+}

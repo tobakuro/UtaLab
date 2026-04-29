@@ -27,6 +27,7 @@ export function PageHeader() {
       </Link>
       <nav className="flex items-stretch">
         <TopTab href="/upload">アップロード</TopTab>
+        <TopTab href="/songs">マイ楽曲</TopTab>
         <TopTab href="/test">採点デモ</TopTab>
       </nav>
     </header>

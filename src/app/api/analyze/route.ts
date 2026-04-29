@@ -3,6 +3,9 @@ import { spawn } from 'child_process';
 import { mkdir, readFile, rm, writeFile } from 'fs/promises';
 import { join } from 'path';
 
+import { getDb } from '@/db';
+import { songs } from '@/db/schema';
+
 export const maxDuration = 300;
 
 function runPythonWorker(inputPath: string, outputDir: string): Promise<void> {
@@ -10,9 +13,11 @@ function runPythonWorker(inputPath: string, outputDir: string): Promise<void> {
     const proc = spawn('uv', ['run', 'python', 'analyze.py', inputPath, outputDir], {
       cwd: join(process.cwd(), 'worker'),
     });
+    const stderrLines: string[] = [];
+    proc.stderr.on('data', (chunk) => stderrLines.push(String(chunk)));
     proc.on('close', (code) => {
       if (code === 0) resolve();
-      else reject(new Error(`analyze.py がコード ${code} で終了しました`));
+      else reject(new Error(`analyze.py がコード ${code} で終了しました\n${stderrLines.join('')}`));
     });
     proc.on('error', reject);
   });
@@ -44,6 +49,8 @@ export async function POST(request: Request) {
     melody.accompaniment = `/analyzed/${id}/accompaniment.wav`;
     melody.songId = id;
     await writeFile(melodyPath, JSON.stringify(melody, null, 2));
+
+    await getDb().insert(songs).values({ id, title, duration: melody.duration });
 
     return Response.json({ jobId: id, status: 'done', melodyUrl: `/analyzed/${id}/melody.json` });
   } catch (err) {
