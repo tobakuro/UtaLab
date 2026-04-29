@@ -348,13 +348,15 @@ Windows のブラウザで `http://localhost:3000` にアクセスし、Next.js 
 `worker/` に AI 音声解析ワーカーが用意されている。以下でセットアップする。
 
 ```bash
-cd ~/utalab/worker
-uv add demucs librosa numpy soundfile
+cd ~/UtaLab/worker
+uv add demucs librosa numpy soundfile tensorflow "torch==2.5.1" "torchaudio==2.5.1"
 uv pip install crepe --no-build-isolation
 cd ..
 ```
 
 > `crepe` だけ `--no-build-isolation` が必要。パッケージのビルド設定が古いため。
+>
+> `torch` / `torchaudio` はバージョン固定が必要。最新版（2.11.0 以降）は `torchcodec` を必須とするが、Nix 経由の FFmpeg と shared library のパスが合わず動かないため。
 
 #### 動作確認
 

@@ -1,62 +1,48 @@
 # UtaLab - 引き継ぎ書
 
-作成日: 2026-04-27
+最終更新: 2026-04-29
 
 ---
 
 ## 現在地
 
-MVP ロードマップの Day 5 進行中。
+MVP ロードマップ **完了**。
 
-| Day   | 内容                                           | 状態       |
-| ----- | ---------------------------------------------- | ---------- |
-| Day 1 | Web Audio API でマイク波形表示                 | 完了       |
-| Day 2 | AudioWorklet + pitchy でリアルタイムピッチ検出 | 完了       |
-| Day 3 | 伴奏再生 + 時刻同期 + Canvas ピッチライン描画  | 完了       |
-| Day 4 | 採点ロジック + 結果画面                        | 完了       |
-| Day 5 | Python で Demucs + CREPE                       | **進行中** |
-| Day 6 | フロントエンドと統合                           | 未着手     |
-| Day 7 | 仕上げ                                         | 未着手     |
-
----
-
-## 残っている GitHub Issues
-
-| #   | タイトル                                         | 優先度 |
-| --- | ------------------------------------------------ | ------ |
-| #8  | Demucs でボーカル/伴奏分離                       | high   |
-| #9  | CREPE でメロディ抽出（ピッチ列 JSON 生成）       | high   |
-| #7  | MVP: AI 音声解析（Python ワーカー）              | high   |
-| #11 | アップロード API の作成                          | high   |
-| #12 | フロントエンド統合（アップロード UI + 画面遷移） | high   |
-| #10 | MVP: アップロード → 解析 → カラオケの統合        | high   |
-| #14 | shadcn/ui での UI 調整                           | middle |
-| #15 | エラーハンドリング（マイク権限拒否・解析失敗等） | middle |
-| #13 | MVP: UI 調整 + エラーハンドリング + デモ準備     | middle |
+| Day   | 内容                                           | 状態   |
+| ----- | ---------------------------------------------- | ------ |
+| Day 1 | Web Audio API でマイク波形表示                 | 完了   |
+| Day 2 | AudioWorklet + pitchy でリアルタイムピッチ検出 | 完了   |
+| Day 3 | 伴奏再生 + 時刻同期 + Canvas ピッチライン描画  | 完了   |
+| Day 4 | 採点ロジック + 結果画面                        | 完了   |
+| Day 5 | Python で Demucs + CREPE                       | 完了   |
+| Day 6 | フロントエンドと統合                           | 完了   |
+| Day 7 | UI 調整 + エラーハンドリング                   | 完了   |
 
 ---
 
-## 次にやること(Day 5〜6)
+## GitHub Issues（完了済み）
 
-### Day 5: analyze.py の動作確認(issue #7, #8, #9)
+| #   | タイトル                                         |
+| --- | ------------------------------------------------ |
+| #5  | 採点ロジック実装（音程スコア）                   |
+| #6  | 結果画面の作成                                   |
+| #8  | Demucs でボーカル/伴奏分離                       |
+| #9  | CREPE でメロディ抽出（ピッチ列 JSON 生成）       |
+| #11 | アップロード API の作成                          |
+| #12 | フロントエンド統合（アップロード UI + 画面遷移） |
+| #14 | shadcn/ui での UI 調整                           |
+| #15 | エラーハンドリング（マイク権限拒否・解析失敗等） |
 
-`worker/analyze.py` は実装済み。音声ファイルを渡して出力を確認する。
+---
 
-```bash
-cd ~/utalab/worker
-uv run python analyze.py <音声ファイル> ./output_test
-```
+## 次フェーズ（Phase 2 以降）
 
-出力:
-
-- `output_test/accompaniment.wav` — ボーカル除去済み伴奏
-- `output_test/melody.json` — ピッチ列 JSON
-
-### Day 6: Next.js から Python を呼び出して統合(issue #11, #12, #10)
-
-- `src/app/api/analyze/route.ts` を作成
-- `child_process.spawn` で `uv run python worker/analyze.py` を起動
-- アップロード UI(`src/app/upload/page.tsx`)から解析 → カラオケ画面遷移
+| フェーズ | 内容 |
+| -------- | ---- |
+| Phase 2 | PostgreSQL + Drizzle / Auth.js / スコア履歴 DB 保存 |
+| Phase 3 | Python Worker → Modal.com / ストレージ → Cloudflare R2 / Inngest ジョブキュー |
+| Phase 4 | ビブラート・しゃくり・リズム採点 / WhisperX 歌詞同期 |
+| Phase 5 | PWA 化 / モバイル最適化 |
 
 ---
 
@@ -86,25 +72,17 @@ Canvas にピッチラインを描画するコンポーネント。青いバー(
 
 `ScoreRepository` の localStorage 実装。DB 移行時はインスタンスを差し替えるだけ。
 
-### `src/features/karaoke/hooks/use-scoring.ts`
+### `src/app/api/analyze/route.ts`
 
-採点状態管理フック。`recordPitch` でフレーム蓄積、`finish` でスコア算出・保存。
-
-### `src/features/karaoke/types/melody.ts`
-
-メロディ JSON の型定義。`MelodyNote` / `MelodyData`。
-
-### `public/samples/sample-001.melody.json`
-
-検証用の手動ダミーメロディデータ。Day 5〜6 で Python(CREPE)が自動生成するものに置き換わる。
-
-### `public/worklets/pitch-detector.worklet.js`
-
-AudioWorklet のプロセッサ本体。pitchy を esbuild でバンドルした `public/worklets/pitchy.js` をローカル import して使う。
+音声ファイルを受け取り、`child_process.spawn` で Python ワーカーを呼び出す Route Handler。解析後に `melody.json` の `accompaniment` パスをブラウザ向け URL に書き換えて返す。タイムアウト 300秒。
 
 ### `worker/analyze.py`
 
 Demucs + CREPE による音声解析スクリプト。`analyze(input_path, output_dir)` の純粋関数として実装しており、Modal 移行時は decorator を付けるだけ。
+
+### `src/components/layouts/page-header.tsx`
+
+全ページ共通のヘッダーコンポーネント。`usePathname()` でアクティブタブを自動判定する。
 
 ---
 
@@ -128,19 +106,23 @@ pnpm bundle:worklets
 uv pip install crepe --no-build-isolation
 ```
 
+### torchaudio のバージョン固定
+
+`torchaudio==2.11.0`（最新）は `torchcodec` を必須とするが、Nix 経由の FFmpeg は shared library のパスが標準と異なるため `torchcodec` が動かない。`torch==2.5.1` + `torchaudio==2.5.1` に固定することで解決。
+
 ---
 
 ## 開発環境の起動
 
 ```bash
-cd ~/utalab
+cd ~/UtaLab
 devbox shell
-git pull origin develop
+git pull
 pnpm install   # package.json に変更があった時のみ
 pnpm dev
 ```
 
-`http://localhost:3000/test` で現在の動作を確認できる。
+`http://localhost:3000` でアプリを確認できる。
 
 ---
 

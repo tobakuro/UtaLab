@@ -10,13 +10,13 @@
 
 ```bash
 # 1. プロジェクトディレクトリへ移動
-cd ~/utalab
+cd ~/UtaLab
 
 # 2. Devbox シェルに入る（direnv を導入済みなら不要）
 devbox shell
 
 # 3. リモートの最新を取得
-git pull origin develop
+git pull
 
 # 4. 依存関係を更新（package.json に変更があった時のみ）
 pnpm install

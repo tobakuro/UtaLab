@@ -40,23 +40,23 @@ src/
 ├── features/               # 機能単位で責任を集約する。ここが主役
 │   ├── karaoke/            # カラオケ採点機能
 │   │   ├── audio/          # Web Audio API ラッパー
-│   │   ├── components/     # KaraokePlayer, PitchCanvas 等
-│   │   ├── hooks/          # usePitchDetector, useScoring 等
+│   │   │   ├── accompaniment-player.ts
+│   │   │   └── pitch-detector.ts
+│   │   ├── components/     # PitchCanvas 等
+│   │   ├── hooks/          # usePitchDetector, useScoring
 │   │   ├── repositories/   # ScoreRepository インターフェース・実装
-│   │   │   └── score-repository.ts
+│   │   │   ├── score-repository.ts
+│   │   │   └── local-storage-score-repository.ts
 │   │   ├── scoring/        # 採点ロジック
 │   │   │   ├── scorers/    # PitchScorer 等の実装
 │   │   │   └── types.ts    # Scorer, PitchFrame 型定義
-│   │   └── types/          # カラオケ機能の型定義
-│   └── upload/             # アップロード・AI解析機能
-│       ├── actions/        # Server Actions
-│       ├── components/     # UploadForm 等
-│       └── types/          # アップロード機能の型定義
+│   │   └── types/          # MelodyNote, MelodyData 型定義
+│   └── upload/             # アップロード機能（Phase 2 で拡張予定）
 │
 ├── components/             # 複数 feature で使う汎用 UI コンポーネント
-│   ├── ui/                 # shadcn/ui 置き場(Button, Input 等)
-│   ├── layouts/            # Header, Footer 等の共通レイアウト
-│   └── elements/           # Loading, Error 等の汎用パーツ
+│   ├── ui/                 # shadcn/ui コンポーネント(Button, Card 等)
+│   ├── layouts/            # PageHeader 等の共通レイアウト
+│   └── elements/           # 汎用パーツ（将来用）
 │
 └── types/                  # アプリ全体で使うグローバルな型定義
 ```
@@ -78,7 +78,8 @@ src/
 public/
 ├── samples/                # デモ用著作権フリー音源
 ├── worklets/               # AudioWorklet ファイル
-│   └── pitch-detector.worklet.js
+│   ├── pitch-detector.worklet.js
+│   └── pitchy.js           # esbuild でバンドルした pitchy（pnpm bundle:worklets で再生成）
 └── analyzed/               # 解析結果の一時置き場(MVP限定)
     └── {id}/
         ├── melody.json
